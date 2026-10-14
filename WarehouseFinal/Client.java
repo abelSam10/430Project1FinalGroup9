@@ -13,6 +13,53 @@ public class Client implements Serializable {
     private String phone;
     private double balance;
     private List<WishlistItem> wishlist = new LinkedList<WishlistItem>();
+    private List<Order> orders = new LinkedList<Order>();
+
+    public boolean addOrder(Order order) {
+        if (order == null || order.getClient() != this) return false;
+        if (orders == null) orders = new LinkedList<Order>();
+        if (orders.contains(order)) return false;
+        return orders.add(order);
+    }
+
+    public Iterator<Order> getOrders() {
+        if (orders == null) orders = new LinkedList<Order>();
+        return orders.iterator();
+    }
+
+    // Positive balance is money owed; negative balance is credit.
+    public void debit(double amount) {
+        if (!Double.isFinite(amount) || amount < 0 || !Double.isFinite(balance + amount)) {
+            throw new IllegalArgumentException("Invalid charge amount");
+        }
+        balance += amount;
+    }
+
+    public void applyPayment(double amount) {
+        if (!Double.isFinite(amount) || amount <= 0 || !Double.isFinite(balance - amount)) {
+            throw new IllegalArgumentException("Payment must be a positive finite amount");
+        }
+        balance -= amount;
+    }
+
+    public WishlistItem searchWishlistItem(String productID) {
+        if (productID == null) return null;
+        for (WishlistItem item : wishlist) {
+            if (item.getProduct().getId().equals(productID)) return item;
+        }
+        return null;
+    }
+
+    public boolean removeFromWishlist(String productID) {
+        Iterator<WishlistItem> items = wishlist.iterator();
+        while (items.hasNext()) {
+            if (items.next().getProduct().getId().equals(productID)) {
+                items.remove();
+                return true;
+            }
+        }
+        return false;
+    }
 
     public Client(String name, String address, String phone) {
         if (name == null || name.isEmpty()) {
@@ -92,3 +139,4 @@ public class Client implements Serializable {
             id, name, address, phone, balance);
     }
 }
+
