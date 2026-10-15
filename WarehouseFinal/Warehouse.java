@@ -40,6 +40,14 @@ public class Warehouse {
         return inventory.getProducts();
     }
 
+    public Client receivePayment(String clientID, double amount) {
+        if (!Double.isFinite(amount) || amount <= 0) return null;
+        Client client = clients.getClient(clientID);
+        if (client == null || !Double.isFinite(client.getBalance() - amount)) return null;
+        client.applyPayment(amount);
+        return client;
+    }
+
     public Iterator<Client> getClients() {
         return clients.getClients();
     }
