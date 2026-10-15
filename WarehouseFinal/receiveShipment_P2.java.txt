@@ -1,0 +1,34 @@
+// Person 2 -> Person 3: paste this method into Warehouse.java (Feature 2, Receive Shipment).
+// Requires Product.java, WaitlistItem.java and ShipmentResult.java from Person 2.
+// No new imports are needed (Iterator is already imported; nothing else is used).
+// Returns null on failure (nonpositive quantity or unknown product ID).
+
+    public ShipmentResult receiveShipment(String productID, int quantityReceived) {
+        if (quantityReceived <= 0) return null;
+        Product product = inventory.searchProduct(productID);
+        if (product == null) return null;
+
+        ShipmentResult result = new ShipmentResult(product);
+        int remaining = quantityReceived;
+        while (remaining > 0 && product.hasWaitlist()) {
+            WaitlistItem item = product.getFirstWaitlistItem();
+            Client client = item.getClient();
+            int filled = Math.min(remaining, item.getQuantity());
+
+            Order order = new Order(client);
+            order.addItem(new OrderItem(product, filled, product.getSalePrice()));
+            client.addOrder(order);
+            client.debit(order.getTotal());
+            result.addOrder(order);
+
+            if (filled == item.getQuantity()) {
+                product.removeWaitlistItem(item);
+            } else {
+                item.setQuantity(item.getQuantity() - filled);
+            }
+            remaining -= filled;
+        }
+        product.addToStock(remaining);
+        result.setQuantityAddedToStock(remaining);
+        return result;
+    }
