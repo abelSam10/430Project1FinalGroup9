@@ -24,4 +24,12 @@ public class ClientList {
     public Iterator<Client> getClients() {
         return clients.iterator();
     }
+
+    // balance > 0 only, negative balance is credit
+    public Iterator<Client> getClientsWithOutstandingBalance() {
+        List<Client> result = new ArrayList<>();
+        for (Client c : clients)
+            if (c.getBalance() > 0) result.add(c);
+        return result.iterator();
+    }
 }
