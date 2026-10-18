@@ -1,0 +1,551 @@
+Script started on 2026-10-18 01:42:48+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="118" LINES="34"]
+[?2004h[0;32m@ConnorDoolittle [0m➜ [1;34m/workspaces/430Project1FinalGroup9/WarehouseFinal [0;36m([1;31mmain[0;36m) [0m$ javac *.java
+[?2004l
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+[?2004h[0;32m@ConnorDoolittle [0m➜ [1;34m/workspaces/430Project1FinalGroup9/WarehouseFinal [0;36m([1;31mmain[0;36m) [0m$ java UserInterface
+[?2004l
+Enter a number between 0 and 15 as explained below:
+0 to Exit
+
+1 to add a client
+2 to  add products
+3 to  add to client's wishlist
+4 to  display clients 
+5 to  display products 
+6 to  display wishlist
+7 for help
+8 to process a client's order
+9 to receive a shipment
+10 to receive a payment
+11 to view a single product
+12 to view a product's waitlist
+13 to view a client's profile
+14 to view a client's orders
+15 to list clients with outstanding balances
+Enter command:
+1
+Enter Client name
+Client1
+Enter address
+1 Main St
+Enter phone
+332  20-555-0001
+ID: C1 | Name: Client1 | Address: 1 Main St | Phone: 320-555-0001 | Balance: $0.00
+Enter command:
+1
+Enter Client name
+Client2
+Enter address
+2 Main St
+Enter phone
+320-555-0002
+ID: C2 | Name: Client2 | Address: 2 Main St | Phone: 320-555-0002 | Balance: $0.00
+Enter command:
+1
+Enter Client name
+Client3
+Enter address
+3 Main St
+Enter phone
+320-555-0003
+ID: C3 | Name: Client3 | Address: 3 Main St | Phone: 320-555-0003 | Balance: $0.00
+Enter command:
+1
+Enter Client name
+Client4
+Enter address
+4 Main St
+Enter phone
+320-555-0004
+ID: C4 | Name: Client4 | Address: 4 Main St | Phone: 320-555-0004 | Balance: $0.00
+Enter command:
+1
+Enter Client name
+Client5
+Enter address
+5 Main St
+Enter phone
+320-555-0005
+ID: C5 | Name: Client5 | Address: 5 Main St | Phone: 320-555-0005 | Balance: $0.00
+Enter command:
+4
+ID: C1 | Name: Client1 | Address: 1 Main St | Phone: 320-555-0001 | Balance: $0.00
+ID: C2 | Name: Client2 | Address: 2 Main St | Phone: 320-555-0002 | Balance: $0.00
+ID: C3 | Name: Client3 | Address: 3 Main St | Phone: 320-555-0003 | Balance: $0.00
+ID: C4 | Name: Client4 | Address: 4 Main St | Phone: 320-555-0004 | Balance: $0.00
+ID: C5 | Name: Client5 | Address: 5 Main St | Phone: 320-555-0005 | Balance: $0.00
+Enter command:
+7
+Enter a number between 0 and 15 as explained below:
+0 to Exit
+
+1 to add a client
+2 to  add products
+3 to  add to client's wishlist
+4 to  display clients 
+5 to  display products 
+6 to  display wishlist
+7 for help
+8 to process a client's order
+9 to receive a shipment
+10 to receive a payment
+11 to view a single product
+12 to view a product's waitlist
+13 to view a client's profile
+14 to view a client's orders
+15 to list clients with outstanding balances
+Enter command:
+2
+Enter name of product
+Product1
+Enter quantity
+10
+Enter SalePrice
+1
+ID: P1   | product: Product1        | quantity:  10 | price: $1.00
+Add more products? (Y|y)[es] or anything else for no
+y
+Enter name of product
+Product2
+Enter quantity
+20
+Enter SalePrice
+2
+ID: P2   | product: Product2        | quantity:  20 | price: $2.00
+Add more products? (Y|y)[es] or anything else for no
+y
+Enter name of product
+Product3
+Enter quantity
+30
+Enter SalePrice
+3
+ID: P3   | product: Product3        | quantity:  30 | price: $3.00
+Add more products? (Y|y)[es] or anything else for no
+y
+Enter name of product
+Product4
+Enter quantity
+40
+Enter SalePrice
+4
+ID: P4   | product: Product4        | quantity:  40 | price: $4.00
+Add more products? (Y|y)[es] or anything else for no
+y
+Enter name of product
+Product5
+Enter quantity
+50
+Enter SalePrice
+5
+ID: P5   | product: Product5        | quantity:  50 | price: $5.00
+Add more products? (Y|y)[es] or anything else for no
+n
+Enter command:
+5
+ID: P1   | product: Product1        | quantity:  10 | price: $1.00
+ID: P2   | product: Product2        | quantity:  20 | price: $2.00
+ID: P3   | product: Product3        | quantity:  30 | price: $3.00
+ID: P4   | product: Product4        | quantity:  40 | price: $4.00
+ID: P5   | product: Product5        | quantity:  50 | price: $5.00
+Enter command:
+7
+Enter a number between 0 and 15 as explained below:
+0 to Exit
+
+1 to add a client
+2 to  add products
+3 to  add to client's wishlist
+4 to  display clients 
+5 to  display products 
+6 to  display wishlist
+7 for help
+8 to process a client's order
+9 to receive a shipment
+10 to receive a payment
+11 to view a single product
+12 to view a product's waitlist
+13 to view a client's profile
+14 to view a client's orders
+15 to list clients with outstanding balances
+Enter command:
+3
+Enter Client ID
+C1
+Enter Product ID
+P1
+Enter product quantity
+5
+Product added to wishlist
+Enter command:
+3
+Enter Client ID
+P1
+Enter Product ID
+C3
+Enter product quantity
+5
+Could not add product to wishlist. Check if you entered the right Client ID and Product ID
+Enter command:
+3
+Enter Client ID
+C1
+Enter Product ID
+P3
+Enter product quantity
+5
+Product added to wishlist
+Enter command:
+3
+Enter Client ID
+C1
+Enter Product ID
+P5
+Enter product quantity
+5
+Product added to wishlist
+Enter command:
+6
+Enter Client ID
+C1
+Wishlist for C1
+Product ID: P1 | Name: Product1 | Quantity: 5
+Product ID: P3 | Name: Product3 | Quantity: 5
+Product ID: P5 | Name: Product5 | Quantity: 5
+Enter command:
+3
+Enter Client ID
+C2
+Enter Product ID
+P1
+Enter product quantity
+7
+Product added to wishlist
+Enter command:
+3
+Enter Client ID
+C2
+Enter Product ID
+P2
+Enter product quantity
+7
+Product added to wishlist
+Enter command:
+3
+Enter Client ID
+C2
+Enter Product ID
+P4
+Enter product quantity
+7
+Product added to wishlist
+Enter command:
+6
+Enter Client ID
+C2
+Wishlist for C2
+Product ID: P1 | Name: Product1 | Quantity: 7
+Product ID: P2 | Name: Product2 | Quantity: 7
+Product ID: P4 | Name: Product4 | Quantity: 7
+Enter command:
+7
+Enter a number between 0 and 15 as explained below:
+0 to Exit
+
+1 to add a client
+2 to  add products
+3 to  add to client's wishlist
+4 to  display clients 
+5 to  display products 
+6 to  display wishlist
+7 for help
+8 to process a client's order
+9 to receive a shipment
+10 to receive a payment
+11 to view a single product
+12 to view a product's waitlist
+13 to view a client's profile
+14 to view a client's orders
+15 to list clients with outstanding balances
+Enter command:
+3
+Enter Client ID
+C3
+Enter Product ID
+P1
+Enter product quantity
+6
+Product added to wishlist
+Enter command:
+3
+Enter Client ID
+C3
+Enter Product ID
+P2
+Enter product quantity
+6
+Product added to wishlist
+Enter command:
+3
+Enter Client ID
+C3
+Enter Product ID
+P5
+Enter product quantity
+6
+Product added to wishlist
+Enter command:
+6
+Enter Client ID
+C3
+Wishlist for C3
+Product ID: P1 | Name: Product1 | Quantity: 6
+Product ID: P2 | Name: Product2 | Quantity: 6
+Product ID: P5 | Name: Product5 | Quantity: 6
+Enter command:
+7
+Enter a number between 0 and 15 as explained below:
+0 to Exit
+
+1 to add a client
+2 to  add products
+3 to  add to client's wishlist
+4 to  display clients 
+5 to  display products 
+6 to  display wishlist
+7 for help
+8 to process a client's order
+9 to receive a shipment
+10 to receive a payment
+11 to view a single product
+12 to view a product's waitlist
+13 to view a client's profile
+14 to view a client's orders
+15 to list clients with outstanding balances
+Enter command:
+8
+Enter Client ID
+C2
+Product ID: P1 | Name: Product1 | Quantity: 7
+Keep (K), Change quantity (C), or Remove (R)
+k K
+Product ID: P2 | Name: Product2 | Quantity: 7
+Keep (K), Change quantity (C), or Remove (R)
+K
+Product ID: P4 | Name: Product4 | Quantity: 7
+Keep (K), Change quantity (C), or Remove (R)
+K
+Order Summary:
+Product: P1 | Quantity: 7 | Unit price: $1.00 | Cost: $7.00
+Product: P2 | Quantity: 7 | Unit price: $2.00 | Cost: $14.00
+Product: P4 | Quantity: 7 | Unit price: $4.00 | Cost: $28.00
+Order Total: $49.0
+Updated Balance: $49.0
+Enter command:
+4
+ID: C1 | Name: Client1 | Address: 1 Main St | Phone: 320-555-0001 | Balance: $0.00
+ID: C2 | Name: Client2 | Address: 2 Main St | Phone: 320-555-0002 | Balance: $49.00
+ID: C3 | Name: Client3 | Address: 3 Main St | Phone: 320-555-0003 | Balance: $0.00
+ID: C4 | Name: Client4 | Address: 4 Main St | Phone: 320-555-0004 | Balance: $0.00
+ID: C5 | Name: Client5 | Address: 5 Main St | Phone: 320-555-0005 | Balance: $0.00
+Enter command:
+8
+Enter Client ID
+C3
+Product ID: P1 | Name: Product1 | Quantity: 6
+Keep (K), Change quantity (C), or Remove (R)
+K
+Product ID: P2 | Name: Product2 | Quantity: 6
+Keep (K), Change quantity (C), or Remove (R)
+K
+Product ID: P5 | Name: Product5 | Quantity: 6
+Keep (K), Change quantity (C), or Remove (R)
+K
+Order Summary:
+Product: P1 | Quantity: 3 | Unit price: $1.00 | Cost: $3.00
+Product: P2 | Quantity: 6 | Unit price: $2.00 | Cost: $12.00
+Product: P5 | Quantity: 6 | Unit price: $5.00 | Cost: $30.00
+Order Total: $45.0
+Updated Balance: $45.0
+Enter command:
+4
+ID: C1 | Name: Client1 | Address: 1 Main St | Phone: 320-555-0001 | Balance: $0.00
+ID: C2 | Name: Client2 | Address: 2 Main St | Phone: 320-555-0002 | Balance: $49.00
+ID: C3 | Name: Client3 | Address: 3 Main St | Phone: 320-555-0003 | Balance: $45.00
+ID: C4 | Name: Client4 | Address: 4 Main St | Phone: 320-555-0004 | Balance: $0.00
+ID: C5 | Name: Client5 | Address: 5 Main St | Phone: 320-555-0005 | Balance: $0.00
+Enter command:
+7
+Enter a number between 0 and 15 as explained below:
+0 to Exit
+
+1 to add a client
+2 to  add products
+3 to  add to client's wishlist
+4 to  display clients 
+5 to  display products 
+6 to  display wishlist
+7 for help
+8 to process a client's order
+9 to receive a shipment
+10 to receive a payment
+11 to view a single product
+12 to view a product's waitlist
+13 to view a client's profile
+14 to view a client's orders
+15 to list clients with outstanding balances
+Enter command:
+6
+Enter Client ID
+C2
+Wishlist for C2
+Enter command:
+6
+Enter Client ID
+C3
+Wishlist for C3
+Enter command:
+12
+Enter Product ID
+P1
+Waitlist for product P1:
+Client: C3 | Quantity: 3
+Enter command:
+12
+Enter Product ID
+P2
+No waitlist for this product.
+Enter command:
+8
+Enter Client ID
+C1
+Product ID: P1 | Name: Product1 | Quantity: 5
+Keep (K), Change quantity (C), or Remove (R)
+K
+Product ID: P3 | Name: Product3 | Quantity: 5
+Keep (K), Change quantity (C), or Remove (R)
+K
+Product ID: P5 | Name: Product5 | Quantity: 5
+Keep (K), Change quantity (C), or Remove (R)
+K
+Order Summary:
+Product: P3 | Quantity: 5 | Unit price: $3.00 | Cost: $15.00
+Product: P5 | Quantity: 5 | Unit price: $5.00 | Cost: $25.00
+Order Total: $40.0
+Updated Balance: $40.0
+Enter command:
+4
+ID: C1 | Name: Client1 | Address: 1 Main St | Phone: 320-555-0001 | Balance: $40.00
+ID: C2 | Name: Client2 | Address: 2 Main St | Phone: 320-555-0002 | Balance: $49.00
+ID: C3 | Name: Client3 | Address: 3 Main St | Phone: 320-555-0003 | Balance: $45.00
+ID: C4 | Name: Client4 | Address: 4 Main St | Phone: 320-555-0004 | Balance: $0.00
+ID: C5 | Name: Client5 | Address: 5 Main St | Phone: 320-555-0005 | Balance: $0.00
+Enter command:
+7
+Enter a number between 0 and 15 as explained below:
+0 to Exit
+
+1 to add a client
+2 to  add products
+3 to  add to client's wishlist
+4 to  display clients 
+5 to  display products 
+6 to  display wishlist
+7 for help
+8 to process a client's order
+9 to receive a shipment
+10 to receive a payment
+11 to view a single product
+12 to view a product's waitlist
+13 to view a client's profile
+14 to view a client's orders
+15 to list clients with outstanding balances
+Enter command:
+3
+Enter Client ID
+C1
+Enter Product ID
+P1 8
+Enter product quantity
+0
+Could not add product to wishlist. Check if you entered the right Client ID and Product ID
+Enter command:
+6
+Enter Client ID
+C1
+Wishlist for C1
+Enter command:
+10
+Enter Client ID
+C1
+Enter payment amount
+100
+Payment applied
+Updated Balance: $-60.0
+Enter command:
+10
+Enter Client ID
+C2
+Enter payment amount
+100
+Payment applied
+Updated Balance: $-51.0
+Enter command:
+4
+ID: C1 | Name: Client1 | Address: 1 Main St | Phone: 320-555-0001 | Balance: $-60.00
+ID: C2 | Name: Client2 | Address: 2 Main St | Phone: 320-555-0002 | Balance: $-51.00
+ID: C3 | Name: Client3 | Address: 3 Main St | Phone: 320-555-0003 | Balance: $45.00
+ID: C4 | Name: Client4 | Address: 4 Main St | Phone: 320-555-0004 | Balance: $0.00
+ID: C5 | Name: Client5 | Address: 5 Main St | Phone: 320-555-0005 | Balance: $0.00
+Enter command:
+9
+Enter Product ID
+P1
+Enter quantity received
+100
+Shipment processed
+Client: C3 | Items: 1 | Total: $3.00
+Product: P1 | Quantity: 3 | Unit price: $1.00 | Cost: $3.00
+Client: C1 | Items: 1 | Total: $5.00
+Product: P1 | Quantity: 5 | Unit price: $1.00 | Cost: $5.00
+Remaining quantity added to stock: 92
+Enter command:
+5
+ID: P1   | product: Product1        | quantity:  92 | price: $1.00
+ID: P2   | product: Product2        | quantity:   7 | price: $2.00
+ID: P3   | product: Product3        | quantity:  25 | price: $3.00
+ID: P4   | product: Product4        | quantity:  33 | price: $4.00
+ID: P5   | product: Product5        | quantity:  39 | price: $5.00
+Enter command:
+4
+ID: C1 | Name: Client1 | Address: 1 Main St | Phone: 320-555-0001 | Balance: $-55.00
+ID: C2 | Name: Client2 | Address: 2 Main St | Phone: 320-555-0002 | Balance: $-51.00
+ID: C3 | Name: Client3 | Address: 3 Main St | Phone: 320-555-0003 | Balance: $48.00
+ID: C4 | Name: Client4 | Address: 4 Main St | Phone: 320-555-0004 | Balance: $0.00
+ID: C5 | Name: Client5 | Address: 5 Main St | Phone: 320-555-0005 | Balance: $0.00
+Enter command:
+14
+Enter Client ID
+C1
+Orders for client C1:
+Client: C1 | Items: 2 | Total: $40.00
+  Product: P3 | Quantity: 5 | Unit price: $3.00 | Cost: $15.00
+  Product: P5 | Quantity: 5 | Unit price: $5.00 | Cost: $25.00
+Client: C1 | Items: 1 | Total: $5.00
+  Product: P1 | Quantity: 5 | Unit price: $1.00 | Cost: $5.00
+Enter command:
+14
+Enter Client ID
+C2
+Orders for client C2:
+Client: C2 | Items: 3 | Total: $49.00
+  Product: P1 | Quantity: 7 | Unit price: $1.00 | Cost: $7.00
+  Product: P2 | Quantity: 7 | Unit price: $2.00 | Cost: $14.00
+  Product: P4 | Quantity: 7 | Unit price: $4.00 | Cost: $28.00
+Enter command:
+15
+Clients with outstanding balances:
+ID: C3 | Name: Client3 | Address: 3 Main St | Phone: 320-555-0003 | Balance: $48.00
+Enter command:
+0

@@ -13,6 +13,18 @@ public class UserInterface {
   private static final int DISPLAY_PRODUCTS = 5;
   private static final int DISPLAY_WISHLIST = 6;
   private static final int HELP = 7;
+  // 3 aditional functions for final code.
+  private static final int PROCESS_ORDER = 8;
+  private static final int RECEIVE_SHIPMENT = 9;
+  private static final int RECEIVE_PAYMENT = 10;
+  // 5 New Queries:
+private static final int VIEW_PRODUCT = 11;
+private static final int VIEW_PRODUCT_WAITLIST = 12;
+private static final int VIEW_CLIENT_PROFILE = 13;
+private static final int VIEW_CLIENT_ORDERS = 14;
+private static final int LIST_CLIENTS_WITH_BALANCE = 15;
+
+
   private UserInterface() {
      warehouse = Warehouse.instance();
     
@@ -86,7 +98,7 @@ public class UserInterface {
     do {
       try {
         int value = Integer.parseInt(getToken("Enter command:"));
-        if (value >= EXIT && value <= HELP) {
+        if (value >= EXIT && value <= LIST_CLIENTS_WITH_BALANCE) {
           return value;
         }
       } catch (NumberFormatException nfe) {
@@ -96,7 +108,7 @@ public class UserInterface {
   }
 
   public void help() {
-    System.out.println("Enter a number between 0 and 7 as explained below:");
+    System.out.println("Enter a number between 0 and 15 as explained below:");
     System.out.println(EXIT + " to Exit\n");
     System.out.println(ADD_CLIENT + " to add a client");
     System.out.println(ADD_PRODUCTS + " to  add products");
@@ -105,6 +117,16 @@ public class UserInterface {
     System.out.println(DISPLAY_PRODUCTS + " to  display products ");
     System.out.println(DISPLAY_WISHLIST + " to  display wishlist");
     System.out.println(HELP + " for help");
+    // Adding the 3 new functions to UI.
+    System.out.println(PROCESS_ORDER + " to process a client's order");
+    System.out.println(RECEIVE_SHIPMENT + " to receive a shipment");
+    System.out.println(RECEIVE_PAYMENT + " to receive a payment");
+    // The 5 new Queries
+    System.out.println(VIEW_PRODUCT + " to view a single product");
+    System.out.println(VIEW_PRODUCT_WAITLIST + " to view a product's waitlist");
+    System.out.println(VIEW_CLIENT_PROFILE + " to view a client's profile");
+    System.out.println(VIEW_CLIENT_ORDERS + " to view a client's orders");
+    System.out.println(LIST_CLIENTS_WITH_BALANCE + " to list clients with outstanding balances");
   }
 
   public void addClient() {
@@ -201,6 +223,178 @@ public class UserInterface {
   //     cnfe.printStackTrace();
   //   }
   // }
+
+  // Process Client Order function
+public void processClientOrder() {
+    String clientID = getToken("Enter Client ID");
+    Client client = warehouse.getClient(clientID);
+    if (client == null) {
+        System.out.println("No such client");
+        return;
+    }
+
+    Iterator<WishlistItem> it = client.getWishlist();
+    List<WishlistItem> items = new ArrayList<>();
+    while (it.hasNext()) items.add(it.next());
+
+    if (items.isEmpty()) {
+        System.out.println("Wishlist is empty");
+        return;
+    }
+
+    for (WishlistItem item : items) {
+        System.out.println(item.toString());
+        String choice = getToken("Keep (K), Change quantity (C), or Remove (R)");
+        if (choice.equalsIgnoreCase("C")) {
+            int q = getNumber("Enter new quantity");
+            warehouse.changeWishlistQuantity(clientID, item.getProduct().getId(), q);
+        } else if (choice.equalsIgnoreCase("R")) {
+            warehouse.removeFromWishlist(clientID, item.getProduct().getId());
+        }
+    }
+
+    Order order = warehouse.processOrder(clientID);
+    if (order == null) {
+        System.out.println("Order could not be processed");
+        return;
+    }
+
+    System.out.println("Order Summary:");
+    Iterator<OrderItem> oi = order.getItems();
+    while (oi.hasNext()) System.out.println(oi.next().toString());
+    System.out.println("Order Total: $" + order.getTotal());
+    System.out.println("Updated Balance: $" + client.getBalance());
+  }
+
+  // Recieve Shipment Function
+  public void receiveShipment() {
+    String productID = getToken("Enter Product ID");
+    int quantity = getNumber("Enter quantity received");
+
+    ShipmentResult result = warehouse.receiveShipment(productID, quantity);
+    if (result == null) {
+        System.out.println("Invalid product or quantity");
+        return;
+    }
+
+    System.out.println("Shipment processed");
+
+    Iterator<Order> orders = (Iterator<Order>) result.getOrders();
+
+    while (orders.hasNext()) {
+        Order o = orders.next();
+        System.out.println(o.toString());
+        Iterator<OrderItem> items = o.getItems();
+        while (items.hasNext()) System.out.println(items.next().toString());
+    }
+
+    System.out.println("Remaining quantity added to stock: " + result.getQuantityAddedToStock());
+}
+
+  // Recieve Payment Function
+  public void receivePayment() {
+    String clientID = getToken("Enter Client ID");
+    double amount = getDouble("Enter payment amount");
+
+    Client client = warehouse.receivePayment(clientID, amount);
+    if (client == null) {
+        System.out.println("Invalid client or amount");
+        return;
+    }
+
+    System.out.println("Payment applied");
+    System.out.println("Updated Balance: $" + client.getBalance());
+  }
+
+  // New View Product Query Function
+  public void viewProduct() {
+    String productID = getToken("Enter Product ID");
+    Product product = warehouse.getProduct(productID);
+
+    if (product == null) {
+        System.out.println("No such product.");
+        return;
+    }
+
+    System.out.println(product.toString());
+  }
+
+  // New View Product Waitlist Query
+  public void viewProductWaitlist() {
+    String productID = getToken("Enter Product ID");
+    Iterator<WaitlistItem> waitlist = warehouse.getWaitlist(productID);
+
+    if (waitlist == null) {
+        System.out.println("No such product.");
+        return;
+    }
+
+    if (!waitlist.hasNext()) {
+        System.out.println("No waitlist for this product.");
+        return;
+    }
+
+    System.out.println("Waitlist for product " + productID + ":");
+    while (waitlist.hasNext()) {
+        System.out.println(waitlist.next().toString());
+    }
+  }
+
+  // New View Client Profile Query
+  public void viewClientProfile() {
+    String clientID = getToken("Enter Client ID");
+    Client client = warehouse.getClient(clientID);
+
+    if (client == null) {
+        System.out.println("No such client.");
+        return;
+    }
+
+    System.out.println(client.toString());
+}
+
+  // New View Client Orders Query
+  public void viewClientOrders() {
+    String clientID = getToken("Enter Client ID");
+    Iterator<Order> orders = warehouse.getOrders(clientID);
+
+    if (orders == null) {
+        System.out.println("No such client.");
+        return;
+    }
+
+    if (!orders.hasNext()) {
+        System.out.println("Client has no orders.");
+        return;
+    }
+
+    System.out.println("Orders for client " + clientID + ":");
+    while (orders.hasNext()) {
+        Order order = orders.next();
+        System.out.println(order.toString());
+
+        Iterator<OrderItem> items = order.getItems();
+        while (items.hasNext()) {
+            System.out.println("  " + items.next().toString());
+        }
+    }
+  }
+
+  // New Outstanding balance Query
+  public void listClientsWithBalance() {
+    Iterator<Client> clients = warehouse.getClientsWithOutstandingBalance();
+
+    if (clients == null || !clients.hasNext()) {
+        System.out.println("No clients have outstanding balances.");
+        return;
+    }
+
+    System.out.println("Clients with outstanding balances:");
+    while (clients.hasNext()) {
+        System.out.println(clients.next().toString());
+    }
+}
+
   public void process() {
     int command;
     help();
@@ -220,9 +414,35 @@ public class UserInterface {
                                 break;
         case HELP:              help();
                                 break;
+        case PROCESS_ORDER:     processClientOrder();
+                                break;
+        case RECEIVE_SHIPMENT:  receiveShipment();
+                                break;
+        case RECEIVE_PAYMENT:   receivePayment();
+                                break;
+        case VIEW_PRODUCT:
+                                viewProduct();
+                                break;
+
+        case VIEW_PRODUCT_WAITLIST:
+                                viewProductWaitlist();
+                                break;
+
+        case VIEW_CLIENT_PROFILE:
+                                viewClientProfile();
+                                break;
+
+        case VIEW_CLIENT_ORDERS:
+                                viewClientOrders();
+                                break;
+
+        case LIST_CLIENTS_WITH_BALANCE:
+                                listClientsWithBalance();
+                                break;
       }
     }
   }
+
   public static void main(String[] s) {
     UserInterface.instance().process();
   }
